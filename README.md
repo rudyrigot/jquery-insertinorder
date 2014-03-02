@@ -2,6 +2,16 @@
 
 A JQuery plugin to insert a new DOM element at the right place within sibling DOM elements.
 
+For instance, say you have an HTML list like this:
+```html
+<ul>
+  <li>Hello 0</li>
+  <li>Hello 2</li>
+  <li>Hello 4</li>
+</ul>
+```
+and you want to insert  `<li>Hello 3</li>` at the right place, this library does just that
+effortlessly (by using an extra `data-order` attribute, not represented here).
 
 ## Getting Started
 
@@ -15,8 +25,8 @@ Download the [production version][min] or the [development version][max].
 In your web page:
 
 ```html
-<script src="jquery.js"></script>
-<script src="dist/insertinorder.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="js/insertinorder.min.js"></script>
 ```
 
 ### Install on your website with Bower
@@ -39,23 +49,23 @@ Add into your webpage:
 
 Three prerequisites:
  * [JQuery](http://jquery.com/) must be included in your webpage, of course.
- * the elements in the list you're inserting into all have a `data-order` attribute (those that don't will be ignored).
- * the elements already in the list are ordered, in the same direction as the one you're using to insert the element.
+ * the elements in the list you're inserting into all have a `data-order` attribute (those that don't will be ignored), and this attribute is a numeral.
+ * the elements already in the list are ordered on their `data-order` attribute, in the same direction as the one you're using to insert the element.
 
-Apply on the JQuery element objet of the parent element. Note that even though the library was created with a
+Apply the method on the JQuery element objet of the parent element. Note that even though the library was created with a
 particular use case in mind, that you will probably apply the method on a `ul` DOM element, in order to
-keep its `li` children ordered, this is actually not a necessity (it should work with `div` elements with `div`
+keep its `li` children ordered, this is actually not a necessity (it should work with `div` elements within `div`
 elements, or anything else).
 
 Parameters in `insertinorder(liStr, order, options)`
  * `liStr` (mandatory): the string representation of the element you're inserting. If you wish to insert other elements later, don't forget to give it a `data-order` attribute containing its order in the list.
- * `order` (mandatory): its order as a numeral value (can seem repetitive, as you most likely inserted it in `liStr`'s `data-order` attribute, but having it as a number makes this more performant)
+ * `order` (mandatory): its order within the list, as a numeral value (can seem repetitive, as you most likely inserted it in `liStr`'s `data-order` attribute, but having it directly as a number makes the whole thing more performant).
  * `options` (optional): an object containing options (see below)
 
 Options:
  * `direction`:
-  * `'asc'`: the list is ordered in an ascending direction, smallest first (**default value**)
-  * `'desc'`: the list is ordered in a descending direction, biggest first
+  * `'asc'`: the list is ordered in an ascending direction, smallest first (**default value**).
+  * `'desc'`: the list is ordered in a descending direction, biggest first.
 
 ## Examples
 
